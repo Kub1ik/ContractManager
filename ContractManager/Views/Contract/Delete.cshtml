@@ -1,0 +1,50 @@
+﻿@model Contract
+
+<h1 class="text-primary mt-4">Delete Contract</h1>
+<hr />
+<div class="row">
+    <div class="p-3 mt-4 border">
+        <form asp-action="DeletePOST" class="row" id="EditContract">
+            <fieldset asp-validation-summary="ModelOnly" class="text-danger"></fieldset>
+            <input asp-for="Id" hidden />
+            <fieldset class="form-group mb-3 col-md-6">
+                <label asp-for="RegistrationNumber" class="control-label"></label>
+                <input disabled asp-for="RegistrationNumber" class="form-control" />
+                <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group mb-3 col-md-6">
+                <label asp-for="Institution" class="control-label"></label>
+                <input disabled asp-for="Institution" class="form-control" />
+                <span asp-validation-for="Institution" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group mb-3 col-md-4">
+                <label asp-for="ClosingDate" class="control-label"></label>
+                <input disabled asp-for="ClosingDate" class="form-control" />
+                <span asp-validation-for="ClosingDate" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group mb-3 col-md-4">
+                <label asp-for="ForceDate" class="control-label"></label>
+                <input disabled asp-for="ForceDate" class="form-control" />
+                <span asp-validation-for="ForceDate" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group mb-3 col-md-4">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input disabled asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group justify-content-center">
+                <button id="submit" type="submit" value="Delete" class="btn btn-primary" style="width:150px">Delete</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary mt-3" style="width:150px">Back to List</a>
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

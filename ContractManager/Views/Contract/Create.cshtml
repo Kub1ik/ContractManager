@@ -1,0 +1,103 @@
+﻿@model ContractForCreationViewModel
+
+<h1 class="text-primary mt-4">Create Contract</h1>
+<hr />
+<div class="row">
+    <div class="p-3 mt-4 border">
+        <form asp-action="Create" class="row" id="CreateContract">
+            <fieldset asp-validation-summary="ModelOnly" class="text-danger"></fieldset>
+            <fieldset class="form-group mb-3 col-md-6">
+                <label asp-for="@Model.Contract.RegistrationNumber" class="control-label"></label>
+                <input asp-for="@Model.Contract.RegistrationNumber" class="form-control" />
+                <span asp-validation-for="@Model.Contract.RegistrationNumber" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group mb-3 col-md-6">
+                <label asp-for="@Model.Contract.Institution" class="control-label"></label>
+                <input asp-for="@Model.Contract.Institution" class="form-control" />
+                <span asp-validation-for="@Model.Contract.Institution" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group mb-3 col-md-4">
+                <label asp-for="@Model.Contract.ClosingDate" class="control-label"></label>
+                <input asp-for="@Model.Contract.ClosingDate" class="form-control" />
+                <span asp-validation-for="@Model.Contract.ClosingDate" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group mb-3 col-md-4">
+                <label asp-for="@Model.Contract.ForceDate" class="control-label"></label>
+                <input asp-for="@Model.Contract.ForceDate" class="form-control" />
+                <span asp-validation-for="@Model.Contract.ForceDate" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group mb-3 col-md-4">
+                <label asp-for="@Model.Contract.EndDate" class="control-label"></label>
+                <input asp-for="@Model.Contract.EndDate" class="form-control" />
+                <span asp-validation-for="@Model.Contract.EndDate" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group mb-3 col-md-6">
+                <label asp-for="@Model.Contract.ClientId" class="control-label"></label>
+                <select asp-for="@Model.Contract.ClientId" class="form-select mb-1">
+                    <option selected hidden>Select Client</option>
+                    @{
+                        foreach (Client client in Model.Clients)
+                        {
+                                <option value="@client.Id">@client.FirstName @client.LastName</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="@Model.Contract.ClientId" class="text-danger"></span>
+                or <br />
+                <a asp-controller="Client" asp-action="Create" class="btn btn-outline-primary mt-1">
+                    Create New Client
+                </a>
+            </fieldset>
+            <fieldset class="form-group mb-3 col-md-6">
+                <label class="control-label">Advisers</label>
+                <section id="AdvisersSelectionMenus">
+                    <select name="SelectedAdviserIds[0]" class="form-select mb-1">
+                        <option selected hidden>Select Adviser</option>
+                        @{
+                            foreach (Adviser adviser in Model.Advisers)
+                            {
+                                    <option value="@adviser.Id">@adviser.FirstName @adviser.LastName</option>
+                            }
+                        }
+                    </select>
+                </section>
+                <button type="button" onclick="AddAdviser()" class="btn btn-dark btn-sm mt-1 mb-1">Add Adviser</button> <br />
+                or <br />
+                <a asp-controller="Adviser" asp-action="Create" class="btn btn-outline-primary mt-1">
+                    Create New Adviser
+                </a>
+            </fieldset>
+            <fieldset class="form-group justify-content-center">
+                <button id="submit" type="submit" value="Submit" class="btn btn-primary" style="width:150px">Create</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary mt-3" style="width:150px">Back to List</a>
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        const AddAdviser = () => {
+            var index = $("#AdvisersSelectionMenus").children("div").length + 1;
+
+            $('#AdvisersSelectionMenus').append(
+                '<div>' +
+                '<select name="SelectedAdviserIds[' + index + ']" class="form-select mb-1 mt-2">' +
+                '<option selected hidden>Select Adviser</option>@{foreach (Adviser adviser in Model.Advisers){<option value="@adviser.Id">@adviser.FirstName @adviser.LastName</option>}}</select>' +
+                '<button type="button" onclick="RemoveAdviser(this)" class="btn btn-outline-dark btn-sm mb-1">Remove</button>' +
+                '</div>'
+            );
+
+        };
+
+        const RemoveAdviser = (adviser) => {
+            $(adviser).closest("div").remove();
+        };
+    </script>
+}
+

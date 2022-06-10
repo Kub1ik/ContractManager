@@ -1,0 +1,67 @@
+﻿@model ContractManager.Models.AdviserContractViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-primary mt-4">Adviser Details</h1>
+<hr />
+<div class="row">
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adviser.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adviser.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adviser.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adviser.LastName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adviser.Age)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adviser.Age)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adviser.PersonalId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adviser.PersonalId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adviser.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adviser.PhoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adviser.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adviser.Email)
+        </dd>
+        <dt class="col-sm-2">
+            Contracts
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                foreach(ContractAdviser ca in Model.ContractAdviser)
+                {
+                    <div>
+                        <a asp-controller="Contract" asp-action="Details" asp-route-id="@ca.ContractId">
+                            @ca.ContractId
+                        </a>
+                    </div>
+                }
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Adviser.Id" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

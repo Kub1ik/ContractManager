@@ -1,0 +1,56 @@
+﻿@model ContractManager.Models.Adviser
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-primary mt-4">Edit Adviser</h1>
+<hr />
+<div class="row">
+    <div class="p-3 mt-4 border">
+        <form asp-action="Edit" class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <fieldset class="form-group col-md-6 mb-3">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group col-md-6 mb-3">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group col-md-6 mb-3">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group col-md-6 mb-3">
+                <label asp-for="PersonalId" class="control-label"></label>
+                <input asp-for="PersonalId" class="form-control" />
+                <span asp-validation-for="PersonalId" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group col-md-6 mb-3">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group col-md-6 mb-3">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </fieldset>
+            <fieldset class="form-group">
+                <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary mt-3" style="width:150px">Back to List</a>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

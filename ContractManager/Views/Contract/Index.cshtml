@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Contract>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="container p-3">
+    <header class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Contract List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Contract" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Create new Contract
+            </a>
+        </div>
+    </header>
+    <br /><br />
+
+    <table class="table table-responsive table-bordered table-striped table-secondary" style="width:100%">
+        <thead>
+            <tr>
+                <th style="width:75%">
+                    @Html.DisplayNameFor(model => model.RegistrationNumber)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegistrationNumber)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm"><i class="bi bi-file-text"></i> Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
